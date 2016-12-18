@@ -340,10 +340,6 @@ public class ChessPanel extends JPanel{
    // k 棋子颜色，0：黑色，1：白色
    // 该方向上的棋子数目 以及 活度
   private int[] count(int x, int y, int ex, int ey, int bwf) {
-  	// 该方向没意义,返回0
-      if( !makesense(x, y, ex, ey, bwf))//makesense()为判断是否大于5
-          return new int[] {0, 1};
-      
       // 正方向 以及 反方向棋子个数
   	int rt_1 = 1,rt_2 = 1;
   	// 总棋子个数
@@ -485,27 +481,7 @@ public class ChessPanel extends JPanel{
       }
   }
 
-   //----------------------------判断指定方向下棋是否有意义,即最大可能的棋子数是否 >=5-------------------------------//
-   // x,y 评估的基准点
-   // ex,ey 方向向量
-   // k 棋色
-   // true:有意义 false:没意义xy100
-  private Boolean makesense(int x, int y, int ex, int ey, int bwf) {
 
-      int rt = 1;
-      for (int i = 1; x + i * ex < 15 && x + i * ex >= 0 && y + i * ey < 15 && y + i * ey >= 0 && rt < 5; i++)
-          if (isChessOn[x + i * ex][y + i * ey] != 1 - bwf)
-              rt++;
-          else
-              break;
-
-      for (int i = 1; x - i * ex >= 0 && x - i * ex < 15 && y - i * ey >= 0 && y - i * ey < 15 && rt < 5; i++)
-          if (isChessOn[x - i * ex][y - i * ey] != 1 - bwf)
-              rt++;
-          else
-              break;
-      return (rt >= 5);
-  }
 
    //------------------------------------ 棋型判别-------------------------------------//
    // x,y 落子位置
@@ -707,8 +683,8 @@ public class ChessPanel extends JPanel{
 
   public boolean haveWin(int x, int y, int bwf) {
       boolean flag = false;
-      if (count(x, y, 1, 0, bwf)[0] >= 5)
-          flag = true;
+      /*if (count(x, y, 1, 0, bwf)[0] >= 5)
+          flag = true;*/
       if (!flag && count(x, y, 0, 1, bwf)[0] >= 5)
           flag = true;
       if (!flag && count(x, y, 1, 0, bwf)[0] >= 5)

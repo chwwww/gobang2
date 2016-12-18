@@ -51,6 +51,8 @@ public class ChessMap extends JFrame {
 		setVisible(true);
 	}
 	
+	
+	
 	//初始化与默认值
  	public void init() 
  	{
@@ -96,6 +98,7 @@ public class ChessMap extends JFrame {
                           boolean flag=cp.haveWin(x, y, cp.bw);
                           cp.update( x, y );
                           cp.putVoice();  //落子声音
+                          
                           // 第一步棋,需初始化设置边界值
                          if( cp.chess_num == 1){  
                       	 if(x-1>=0)
@@ -113,6 +116,7 @@ public class ChessMap extends JFrame {
                      cp.wined(1 - cp.bw);
                      return;
                  }
+                 
                  cp.putOne(cp.bw);
 		  } 
 		}
